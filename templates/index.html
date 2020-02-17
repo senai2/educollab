@@ -1,0 +1,264 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>EduCollab</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+    
+    
+    <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
+  
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
+    
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+  </head>
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+  <div class="site-wrap">
+
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div> <!-- .site-mobile-menu -->
+    
+    <div class="site-navbar-wrap">
+      
+      <div class="site-navbar site-navbar-target js-sticky-header">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-6 col-md-4">
+              <h1 class="my-0 site-logo"><a href="/">EduCollab<span class="text-primary">.</span> </a></h1>
+            </div>
+            <div class="col-6 col-md-8">
+              <nav class="site-navigation text-right" role="navigation">
+                <div class="container">
+
+                  <div class="d-inline-block d-lg-block ml-md-0 mr-auto py-3"><a href="#" class="site-menu-toggle js-menu-toggle text-black">
+                    <span class="icon-menu h3"></span> <span class="menu-text"></span>
+                  </a></div>
+
+                  <ul class="site-menu main-menu js-clone-nav d-none d-lg-none">
+                    <li><a href="#home-section" class="nav-link">Home</a></li>
+                    <li><a href="#about-section" class="nav-link">About Us</a></li>
+                    <li><a href="/login/" class="nav-link">Login</a></li>
+                    <li><a href="/signup/" class="nav-link">Signup</a></li>
+                  </ul>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- END .site-navbar-wrap -->
+    
+    <div class="site-blocks-cover" id="home-section">
+      <div class="img-wrap">
+        <div class="owl-carousel slide-one-item hero-slider">
+          <div class="slide overlay">
+            <img src="{% static 'images/Books.jpg' %}" alt="Image" class="img-fluid">  
+          </div>
+          <!-- <div class="slide overlay">
+            <img src="images/hero_2.jpg" alt="Image" class="img-fluid">  
+          </div>
+          <div class="slide overlay">
+            <img src="images/hero_3.jpg" alt="Image" class="img-fluid">  
+          </div> -->
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 align-self-center">
+            <div class="intro">
+              <div class="heading">
+                <h1>Education Made Easy</h1>
+              </div>
+              <div class="text">
+                <p class="sub-text mb-5">A collaboration platform for teachers everywhere.</p>
+                <p>
+                  <a href="/login/" target="_blank" class="btn btn-primary btn-md">Login</a>
+                  <a href="/signup/" target="_blank" class="btn btn-primary btn-clear btn-md">Signup</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- END .site-blocks-cover -->
+
+    
+
+    <div class="site-section" id="about-section">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 mb-5">
+            <img src="{% static 'images/w_collab.jpeg' %}" alt="Image" class="img-fluid" class="img-fluid">
+          </div>
+          <div class="col-lg-5 ml-auto section-title">
+            <span class="sub-title mb-2 d-block">About Us</span>
+            <h2 class="title text-primary mb-3">Share your knowledge</h2>
+            <p class="mb-4">Because sharing is caring. Mama I just killed a man. Put a gun against his head, pulled my trigger now he is dead.</p>
+
+
+            <div class="d-flex">
+              <ul class="list-unstyled ul-check success mr-5">
+                <li>Privacy</li>
+                <li>Lecture 2 topic</li>
+                <li>Lecture 4 topic</li>
+                <li>Secure</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- .END site-section -->
+
+    <div class="site-section bg-light" id="what-we-do-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-lg-6 section-title">
+            <span class="sub-title mb-2 d-block">Another About Us</span>
+            <h2 class="title text-primary">Lorem ipsum dolor sit amet consectetur adipisicing elit</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 ml-auto">
+            <div class="row">
+              <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
+                <div class="service h-100">
+                  <span class="icon-photo_album display-4 text-primary d-block mb-4"></span>
+                  <h3>Privacy</h3>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam nostrum ducimus temporibus, quod ipsa fuga fugiat deserunt.</p>
+                  <p><a href="#" class="readmore">Learn more</a></p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
+                <div class="service h-100">
+                  <span class="icon-laptop_mac display-4 text-primary d-block mb-4"></span>
+                  <h3>Content Sharing</h3>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam nostrum ducimus temporibus, quod ipsa fuga fugiat deserunt.</p>
+                  <p><a href="#" class="readmore">Learn more</a></p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
+                <div class="service h-100">
+                  <span class="icon-layers display-4 text-primary d-block mb-4"></span>
+                  <h3>Feature 1</h3>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam nostrum ducimus temporibus, quod ipsa fuga fugiat deserunt.</p>
+                  <p><a href="#" class="readmore">Learn more</a></p>
+                </div>
+              </div>
+    
+              <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
+                <div class="service h-100">
+                  <span class="icon-mobile display-4 text-primary d-block mb-4"></span>
+                  <h3>Feature 2</h3>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam nostrum ducimus temporibus, quod ipsa fuga fugiat deserunt.</p>
+                  <p><a href="#" class="readmore">Learn more</a></p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
+                <div class="service h-100">
+                  <span class="icon-pencil display-4 text-primary d-block mb-4"></span>
+                  <h3>Feature 3</h3>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam nostrum ducimus temporibus, quod ipsa fuga fugiat deserunt.</p>
+                  <p><a href="#" class="readmore">Learn more</a></p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
+                <div class="service h-100">
+                  <span class="icon-search2 display-4 text-primary d-block mb-4"></span>
+                  <h3>More Awesome Feature</h3>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam nostrum ducimus temporibus, quod ipsa fuga fugiat deserunt.</p>
+                  <p><a href="#" class="readmore">Learn more</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- END .site-section -->
+
+  
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-9 mb-5 mb-lg-0">
+            <div class="row mb-5">
+              <div class="col-9">
+                <h3 class="footer-heading mb-4">Project Details</h3>
+                <p>This project is implemented by Group 16 of The Social Web course.</p>
+              </div>
+            </div>
+            
+
+            
+          </div>
+          <div class="col-lg-3 ml-auto">
+           
+            <div class="row mb-5">
+              <div class="col-md-12">
+                <h3 class="footer-heading mb-4">Group Members</h3>
+              </div>
+              <div class="col-md-6 col-lg-6">
+                <ul class="list-unstyled">
+                  <li>Leonard Herold</li>
+                  <li>Shivam Kapoor</li>
+                  <li>Senai</li>
+                  <li>Sophie</li>
+                </ul>
+              </div>
+              
+            </div>
+            
+          </div>
+          
+
+          
+        </div>
+        <div class="row pt-5 mt-5 text-center">
+          <div class="col-md-12">
+        
+            
+          <p>
+            Copyright &copy;
+            <script>document.write(new Date().getFullYear());</script> All rights reserved
+          </p>
+          
+          </div>
+          
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'js/aos.js' %}"></script>
+  <script src="{% static 'js/jquery.sticky.js' %}"></script>
+  <script src="{% static 'js/stickyfill.min.js' %}"></script>
+  <script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+  
+  <script src="{% static 'js/jquery.fancybox.min.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+
+     
+  </body>
+</html>
