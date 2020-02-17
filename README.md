@@ -15,11 +15,12 @@ pip3 install -r requirements.txt
 python3 manage.py makemigrations
 python3 manage.py migrate
 ```
+Not necessary incase no DB changes are made.
 ### Collect Static Files
 ```
 python3 manage.py collectstatic
 ```
-Not necessarily needed incase no changes are made to the static files.
+Not necessary incase no changes are made to the static files.
 ### Create Superuser
 ```
 python3 manage.py createsuperuser
@@ -31,3 +32,4 @@ Enable debugging by changing `DEBUG=True` in `educollab/settings.py`
 ```
 python3 manage.py runserver
 ```
+The server should be accessible from http://localhost:8000
