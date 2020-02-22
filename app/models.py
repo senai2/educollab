@@ -2,11 +2,11 @@ from django.db import models
 
 # Create your models here.
 
-class Image(models.Model):
-    image = models.FileField()
+class File(models.Model):
+    file = models.FileField()
 
     def __str__(self):
-        return self.image.url
+        return self.file.url
 
 class Institution(models.Model):
     title = models.CharField(max_length=100)
@@ -21,7 +21,7 @@ class Member(models.Model):
     institution = models.ForeignKey(Institution, related_name='member', on_delete=models.CASCADE)
     designation = models.CharField(max_length=200)
     created_on = models.DateTimeField(auto_now_add=True)
-    # image = models.ForeignKey(Image, related_name='image_path', on_delete=models.CASCADE)
+    # image = models.ForeignKey(File, related_name='image_path', on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['-created_on']
@@ -51,3 +51,26 @@ class Curriculum(models.Model):
 
     def __str__(self):
         return self.title
+
+class FileType(models.Model):
+    type = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.type
+
+class Bit(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.CharField(max_length=1000, default="")
+    file_type = models.ForeignKey(FileType, related_name='bit', on_delete=models.CASCADE)
+    file = models.ForeignKey(File, related_name='bit', on_delete=models.CASCADE)
+    url = models.CharField(max_length=512)
+    curriculum = models.ForeignKey(Curriculum, related_name='bit', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
+
+class Comment(models.Model):
+    comment = models.CharField(max_length=1000)
+    bit = models.ForeignKey(Bit, related_name='comment', on_delete=models.CASCADE)
+    member = models.ForeignKey(Member, related_name='comment', on_delete=models.CASCADE)
+    

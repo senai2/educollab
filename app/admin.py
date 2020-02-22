@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Member, Image, Field, Topic, Curriculum, Institution
+from .models import Member, File, Field, Topic, Curriculum, Institution, Bit
 
 # Register your models here.
 
@@ -27,3 +27,8 @@ class CurriculumAdmin(admin.ModelAdmin):
     list_display = ('title', 'posted_by', 'topic','institution', 'id')
 
 admin.site.register(Curriculum, CurriculumAdmin)
+
+class BitAdmin(admin.ModelAdmin):
+    list_display = ('title', 'file_type','curriculum', 'id')
+
+admin.site.register(Bit, BitAdmin)

@@ -8,7 +8,6 @@ def check_user_id(user):
             u_id = user.id,
             name = user.username,
             email = user.email, 
-            institution = "",
             designation = "",
         )
         m_obj.save()
