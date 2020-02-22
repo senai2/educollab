@@ -24,6 +24,6 @@ class TopicAdmin(admin.ModelAdmin):
 admin.site.register(Topic, TopicAdmin)
 
 class CurriculumAdmin(admin.ModelAdmin):
-    list_display = ('title', 'topic','institution', 'id')
+    list_display = ('title', 'posted_by', 'topic','institution', 'id')
 
 admin.site.register(Curriculum, CurriculumAdmin)

@@ -46,6 +46,8 @@ class Curriculum(models.Model):
     title = models.CharField(max_length=100)
     topic = models.ForeignKey(Topic, related_name='curriculum', on_delete=models.CASCADE)
     institution = models.ForeignKey(Institution, related_name='curriculum', on_delete=models.CASCADE)
+    description = models.CharField(max_length=1000, default="")
+    posted_by = models.ForeignKey(Member, related_name='curriculum', on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return self.title
