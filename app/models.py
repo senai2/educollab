@@ -73,4 +73,13 @@ class Comment(models.Model):
     comment = models.CharField(max_length=1000)
     bit = models.ForeignKey(Bit, related_name='comment', on_delete=models.CASCADE)
     member = models.ForeignKey(Member, related_name='comment', on_delete=models.CASCADE)
-    
+
+    def __str__(self):
+        return self.comment
+
+class Upvote(models.Model):
+    bit = models.ForeignKey(Bit, related_name='upvote', on_delete=models.CASCADE)
+    member = models.ForeignKey(Member, related_name='upvote', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.bit
