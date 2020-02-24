@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Member, File, Field, Topic, Curriculum, Institution, Bit, Comment, Upvote, FileType
+from .models import Member, File, Field, Topic, Curriculum, Institution, Bit, Comment, Upvote, FileType, Subscription
 
 # Register your models here.
 
@@ -47,5 +47,10 @@ class UpvoteAdmin(admin.ModelAdmin):
     list_display = ('bit', 'member', 'id')
 
 admin.site.register(Upvote, UpvoteAdmin)
+
+class SubscriptionAdmin(admin.ModelAdmin):
+    list_display = ('curriculum', 'member', 'id')
+
+admin.site.register(Subscription, SubscriptionAdmin)
 
 admin.site.register(FileType)

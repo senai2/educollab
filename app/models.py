@@ -82,5 +82,6 @@ class Upvote(models.Model):
     bit = models.ForeignKey(Bit, related_name='upvote', on_delete=models.CASCADE)
     member = models.ForeignKey(Member, related_name='upvote', on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.bit
+class Subscription(models.Model):
+    curriculum = models.ForeignKey(Curriculum, related_name='subscription', on_delete=models.CASCADE)
+    member = models.ForeignKey(Member, related_name='subscription', on_delete=models.CASCADE)
