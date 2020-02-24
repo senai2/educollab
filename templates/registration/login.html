@@ -24,12 +24,8 @@
 		<!-- END Header -->
 		<!-- Content -->
 		<div id="content" class="colM">
-            {% if form.non_field_errors %}
-            <p class="errornote">
-                {{ form.non_field_errors }}
-            </p>
-            {% endif %}
-			<div id="content-main">
+            {{ form.non_field_errors }}
+            <div id="content-main">
 				<form method="post" >
 					{% csrf_token %}
                     <div class="form-row">
