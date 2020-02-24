@@ -12,3 +12,6 @@ def index(request):
 
 def signup(request):
     return render(request, 'registration/signup.html')
+
+def profile(request):
+    return render(request, 'profile.html', {})
