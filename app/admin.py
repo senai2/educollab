@@ -9,7 +9,7 @@ class InstitutionAdmin(admin.ModelAdmin):
 admin.site.register(Institution, InstitutionAdmin)
 
 class MemberAdmin(admin.ModelAdmin):
-    list_display = ('name', 'u_id', 'institution', 'designation')
+    list_display = ('username', 'u_id', 'institution', 'designation')
 
 admin.site.register(Member, MemberAdmin)
 

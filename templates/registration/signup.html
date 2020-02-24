@@ -7,6 +7,7 @@
 
 <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
 <link rel="stylesheet" type="text/css" href="/static/admin/css/login.css">
+<!-- <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css"> -->
 <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
 
@@ -17,7 +18,7 @@
 		<div id="header">
 			<div id="branding">
 				<h1 id="site-name">
-					<a href="/signup/">EduCollab Signup</a>
+					<a href="/signup/">Create an account</a>
 				</h1>
 			</div>
 		</div>
@@ -28,22 +29,15 @@
             <div id="content-main">
 				<form method="post" >
 					{% csrf_token %}
+					{% for field in form %}
                     <div class="form-row">
-						<label class="required" for="id_username">Email:</label>
-						<input type="text" name="username" autofocus="" required="" id="id_username">
+						<label class="required" for="id_username">{{ field.label_tag }}</label>
+						{{ field }}
 					</div>
-                    <div class="form-row">
-						<label class="required" for="id_username">Name:</label>
-						<input type="text" name="username" autofocus="" required="" id="id_username">
-					</div>
-                    <div class="form-row">
-                        <label class="required" for="id_password">Password:</label>
-                        <input type="text" name="username" autofocus="" required="" id="id_username">
-                    </div>
-                    <div class="form-row">
-                        <label class="required" for="id_password">Re-Password:</label>
-                        <input type="text" name="username" autofocus="" required="" id="id_username">
-                    </div>
+					{% for error in field.errors %}
+					<p style="color: red">{{ error }}</p>
+					{% endfor %}
+					{% endfor %}
                     <div class="submit-row">
                         <label>&nbsp;</label>
                         <input type="submit" value="Signup">
@@ -57,3 +51,4 @@
 </div>
 
 {% endblock %}
+
