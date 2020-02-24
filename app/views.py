@@ -9,3 +9,6 @@ def index(request):
         return render(request, 'feeds.html', {})
     else:
         return render(request, 'index.html', {})
+
+def signup(request):
+    return render(request, 'registration/signup.html')
