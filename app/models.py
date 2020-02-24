@@ -22,7 +22,7 @@ class Member(models.Model):
     institution = models.ForeignKey(Institution, related_name='member', on_delete=models.CASCADE, blank=True, null=True)
     designation = models.CharField(max_length=200, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
-    # image = models.ForeignKey(File, related_name='image_path', on_delete=models.CASCADE, blank=True)
+    image = models.ForeignKey(File, related_name='image_path', on_delete=models.CASCADE, null=True, blank=True)
 
     class Meta:
         ordering = ['-created_on']
@@ -63,7 +63,7 @@ class Bit(models.Model):
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=1000, default="")
     file_type = models.ForeignKey(FileType, related_name='bit', on_delete=models.CASCADE)
-    file = models.ForeignKey(File, related_name='bit', on_delete=models.CASCADE, null=True)
+    file = models.ForeignKey(File, related_name='bit', on_delete=models.CASCADE, null=True, blank=True)
     url = models.CharField(max_length=512, blank=True)
     curriculum = models.ForeignKey(Curriculum, related_name='bit', on_delete=models.CASCADE)
 
