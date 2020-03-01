@@ -1,2 +1,6 @@
 venv
 .vscode
+app/__pycache__
+educollab/__pycache__
+educollab/migrations/__pycache__
+
