@@ -304,9 +304,9 @@ jQuery(document).ready(function($) {
   			$('.js-sticky-header').removeClass('shrink');
   		}
 
-  		if ( $('body').hasClass('offcanvas-menu') ) {
-  			$('body').removeClass('offcanvas-menu');
-  		}
+  		// if ( $('body').hasClass('offcanvas-menu') ) {
+  		// 	$('body').removeClass('offcanvas-menu');
+  		// }
 
   	}) 
 
