@@ -4,7 +4,7 @@
  	once: true
  });
 
-	var position = $(window).scrollTop(); 
+var position = $(window).scrollTop(); 
 
 jQuery(document).ready(function($) {
 
@@ -299,7 +299,11 @@ jQuery(document).ready(function($) {
   	$(window).scroll(function() {
 
 			var st = $(this).scrollTop();
-			if(st > position) {
+			if(st - position > 20) {
+				if ( $('body').hasClass('offcanvas-menu') ) {
+					$('body').removeClass('offcanvas-menu');
+				}
+			} else if(position - st > 20) {
 				if ( $('body').hasClass('offcanvas-menu') ) {
 					$('body').removeClass('offcanvas-menu');
 				}
