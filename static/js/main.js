@@ -4,6 +4,8 @@
  	once: true
  });
 
+var position = $(window).scrollTop(); 
+
 jQuery(document).ready(function($) {
 
 	"use strict";
@@ -296,20 +298,18 @@ jQuery(document).ready(function($) {
 
   	$(window).scroll(function() {
 
-  		var st = $(this).scrollTop();
-
-  		if (st > 300) {
-  			$('.js-sticky-header').addClass('shrink');
-  		} else {
-  			$('.js-sticky-header').removeClass('shrink');
-  		}
-
-  		if ( $('body').hasClass('offcanvas-menu') ) {
-  			$('body').removeClass('offcanvas-menu');
-  		}
-
+			var st = $(this).scrollTop();
+			if(st > position) {
+				if ( $('body').hasClass('offcanvas-menu') ) {
+					$('body').removeClass('offcanvas-menu');
+				}
+			} else {
+				if ( $('body').hasClass('offcanvas-menu') ) {
+					$('body').addClass('offcanvas-menu');
+				}
+			}
+			position = st;
   	}) 
-
   };
   siteScroll();
 
