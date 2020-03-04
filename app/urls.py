@@ -6,4 +6,5 @@ urlpatterns = [
     path('signup/', views.signup),
     path('profile/', views.myprofile),
     path('profile/<str:uname>', views.profile),
+    path('edit-profile/', views.editprofile),
 ]

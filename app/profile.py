@@ -32,3 +32,11 @@ def view_profile(request, uname):
         'my_profile' : request.user.username==uname
     }
     return render(request, 'profile.html', context)
+
+
+def edit_profile(request):
+
+    context = {
+        
+    }
+    return render(request, 'edit-profile.html', context)
