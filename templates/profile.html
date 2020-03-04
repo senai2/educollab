@@ -21,7 +21,23 @@
             </div>
         </div>
         <div class="col-lg-9">
-            {{member}}
+            {% for c in c_list %}
+                <div>
+                Title: {{c.title}}
+                Desc: {{c.description}}
+                {% for b in c.b_list %}
+                    <div>
+                    {{b.title}}
+                    </div>
+                    <div>
+                        Like count: {{b.likes}}
+                        Comment Count: {{b.comments}}
+                    </div>
+                {% endfor %}
+                </div>
+
+                
+			{% endfor %}
         </div>
     </div>
 </div>
