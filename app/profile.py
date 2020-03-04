@@ -2,11 +2,11 @@ from .models import Member, Curriculum, Bit, Upvote, Comment
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 
-def view_profile(request, m_id):
-    app_member_details = get_object_or_404(Member, u_id=m_id)
-    user_details = get_object_or_404(User, id=m_id)
+def view_profile(request, uname):
+    app_member_details = get_object_or_404(Member, username=uname)
+    user_details = get_object_or_404(User, username=uname)
     
-    curriculums = Curriculum.objects.filter(posted_by=m_id)
+    curriculums = Curriculum.objects.filter(posted_by=user_details.id)
 
     c_list = []
     for c in curriculums:
@@ -29,6 +29,6 @@ def view_profile(request, m_id):
         'member' : app_member_details,
         'c_list' : c_list,
         'name' : user_details.first_name + ' ' + user_details.last_name,
-        'my_profile' : request.user.id==m_id
+        'my_profile' : request.user.username==uname
     }
     return render(request, 'profile.html', context)

@@ -13,11 +13,11 @@ def index(request):
     else:
         return render(request, 'index.html', {})
 
-def profile(request,m_id):
-    return view_profile(request, m_id)
+def profile(request,uname):
+    return view_profile(request, uname)
 
 def myprofile(request):
-    return view_profile(request, request.user.id)
+    return view_profile(request, request.user.username)
 
 def signup(request):
     if request.method == 'POST':
