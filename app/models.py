@@ -43,45 +43,76 @@ class Topic(models.Model):
     def __str__(self):
         return self.title
 
-class Curriculum(models.Model):
+class Subject(models.Model):
     title = models.CharField(max_length=100)
-    topic = models.ForeignKey(Topic, related_name='curriculum', on_delete=models.CASCADE)
-    institution = models.ForeignKey(Institution, related_name='curriculum', on_delete=models.CASCADE)
-    description = models.CharField(max_length=1000, default="", blank=True)
-    posted_by = models.ForeignKey(Member, related_name='curriculum', on_delete=models.CASCADE, default=1)
+    topic = models.ForeignKey(Topic, related_name='subject', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
 
-class FileType(models.Model):
-    type = models.CharField(max_length=20)
+class Curriculum(models.Model):
+    title = models.CharField(max_length=100)
+    topic = models.ForeignKey(Subject, related_name='curriculum', on_delete=models.CASCADE)
+    description = models.CharField(max_length=1000, default="", blank=True)
+    posted_by = models.ForeignKey(Member, related_name='curriculum', on_delete=models.CASCADE, default=1)
+    created_on = models.DateTimeField(auto_now_add=True, null=True)
+    last_modified = models.DateTimeField(auto_now=True, null=True)
 
     def __str__(self):
-        return self.type
+        return self.title
+
+    class Meta:
+        ordering = ['-last_modified']
 
 class Bit(models.Model):
     title = models.CharField(max_length=100)
+    bit_type = models.CharField(max_length=100, blank=True)
     description = models.CharField(max_length=1000, default="")
-    file_type = models.ForeignKey(FileType, related_name='bit', on_delete=models.CASCADE)
     file = models.ForeignKey(File, related_name='bit', on_delete=models.CASCADE, null=True, blank=True)
-    url = models.CharField(max_length=512, blank=True)
+    text = models.CharField(max_length=2000, blank=True)
     curriculum = models.ForeignKey(Curriculum, related_name='bit', on_delete=models.CASCADE)
+    created_on = models.DateTimeField(auto_now_add=True, null=True)
+    last_modified = models.DateTimeField(auto_now=True, null=True)
 
     def __str__(self):
         return self.title
 
+    class Meta:
+        ordering = ['-last_modified']
+
 class Comment(models.Model):
     comment = models.CharField(max_length=1000)
-    bit = models.ForeignKey(Bit, related_name='comment', on_delete=models.CASCADE)
+    bit = models.ForeignKey(Bit, related_name='comment', on_delete=models.CASCADE, null=True)
+    curriculum = models.ForeignKey(Curriculum, related_name='comment', on_delete=models.CASCADE, null=True)
     member = models.ForeignKey(Member, related_name='comment', on_delete=models.CASCADE)
+    created_on = models.DateTimeField(auto_now_add=True, null=True)
+    last_modified = models.DateTimeField(auto_now=True, null=True)
 
     def __str__(self):
         return self.comment
 
+class ChangeLog(models.Model):
+    curriculum = models.ForeignKey(Curriculum, related_name='changelog', on_delete=models.CASCADE, null=True)
+    bit = models.ForeignKey(Bit, related_name='changelog', on_delete=models.CASCADE, null=True)
+    description = models.CharField(max_length=1000)
+    comment = models.ForeignKey(Comment, related_name='changelog', on_delete=models.CASCADE)
+    member = models.ForeignKey(Member, related_name='changelog', on_delete=models.CASCADE)
+    created_on = models.DateTimeField(auto_now_add=True, null=True)
+
+    def __str__(self):
+        return self.description
+
 class Upvote(models.Model):
-    bit = models.ForeignKey(Bit, related_name='upvote', on_delete=models.CASCADE)
+    bit = models.ForeignKey(Bit, related_name='upvote', on_delete=models.CASCADE, null=True)
+    curriculum = models.ForeignKey(Curriculum, related_name='upvote', on_delete=models.CASCADE, null=True) 
     member = models.ForeignKey(Member, related_name='upvote', on_delete=models.CASCADE)
+    changelog = models.ForeignKey(ChangeLog, related_name='upvote', on_delete=models.CASCADE, null=True)
 
 class Subscription(models.Model):
-    curriculum = models.ForeignKey(Curriculum, related_name='subscription', on_delete=models.CASCADE)
+    curriculum = models.ForeignKey(Curriculum, related_name='subscription', on_delete=models.CASCADE, null=True)
+    subject = models.ForeignKey(Subject, related_name='subscription', on_delete=models.CASCADE, null=True)
     member = models.ForeignKey(Member, related_name='subscription', on_delete=models.CASCADE)
+
+class Teach(models.Model):
+    curriculum = models.ForeignKey(Curriculum, related_name='teach', on_delete=models.CASCADE)
+    member = models.ForeignKey(Member, related_name='teach', on_delete=models.CASCADE)
