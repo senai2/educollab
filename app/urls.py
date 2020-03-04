@@ -6,4 +6,5 @@ urlpatterns = [
     path('explore/', views.explore),
     path('signup/', views.signup),
     path('profile/', views.profile),
+    path('subjects/<sid>', views.subject, name="subjects"),
 ]
