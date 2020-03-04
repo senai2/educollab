@@ -14,10 +14,10 @@ def index(request):
         return render(request, 'index.html', {})
 
 def profile(request,m_id):
-    return view_profile(request, m_id, False)
+    return view_profile(request, m_id)
 
 def myprofile(request):
-    return view_profile(request, request.user.id, True)
+    return view_profile(request, request.user.id)
 
 def signup(request):
     if request.method == 'POST':

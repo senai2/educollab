@@ -22,8 +22,14 @@
         </div>
         <div class="col-lg-9">
             <div><b>{{name}}'s Activity</b></div>
+            <div>
+                {% if my_profile %}
+                    <span class="btn">Edit Profile</span>
+                {% endif %}
+            </div>
             {% for c in c_list %}
                 <div>
+                    <br><br>
                 Title: {{c.title}}
                 Desc: {{c.description}}
                 {{c.created_on}}
@@ -31,6 +37,7 @@
                 {% for b in c.b_list %}
                     <div>
                     {{b.title}}
+                    {{b.description}}
                     </div>
                     <div>
                         Like count: {{b.likes}}
