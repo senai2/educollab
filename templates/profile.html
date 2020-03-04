@@ -1,15 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<!-- <div class="container">
-    <h4>User Info Goes Here</h4>
-    <div>
-        {{user}}
-    </div>
-    <div>
-        {{user.email}}
-    </div>
-</div> -->
 
 <div class="container">
     <div class="row">
@@ -18,11 +9,11 @@
                 <div class="user-profile">
                     <img class="user-pro-img" src="{% static 'images/default-profile.jpg' %}">
                     <div class="user-pro-status">
-                        <div>Asst. Professor</div>
-                        <div class="user-pro-uni"><b>University of Amsterdam</b></div>
+                        <div>{{member.designation}}</div>
+                        <div class="user-pro-uni"><b>{{member.institution}}</b></div>
                     </div>
                     <div class="user-pro-email">
-                        mail@email
+                        {{member.email}}
                     </div>
                 </div>
                 
@@ -30,7 +21,7 @@
             </div>
         </div>
         <div class="col-lg-9">
-
+            {{member}}
         </div>
     </div>
 </div>

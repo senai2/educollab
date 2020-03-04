@@ -2,6 +2,7 @@ from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from .utils import check_user_id
 from .forms import SignUpForm
+from .profile import view_profile
 
 # Create your views here.
 def index(request):
@@ -12,11 +13,11 @@ def index(request):
     else:
         return render(request, 'index.html', {})
 
-# def signup(request):
-#     return render(request, 'registration/signup.html')
+def profile(request,m_id):
+    return view_profile(request, m_id, False)
 
-def profile(request):
-    return render(request, 'profile.html', {})
+def myprofile(request):
+    return view_profile(request, request.user.id, True)
 
 def signup(request):
     if request.method == 'POST':
