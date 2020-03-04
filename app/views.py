@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from .utils import check_user_id
 from .forms import SignUpForm
 from datetime import datetime
+from app.models import Field
 
 # Create your views here.
 def index(request):
@@ -52,3 +53,8 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
+
+
+def explore(request):
+    fields = Field.objects.all()
+    return render(request, 'explore.html', {"fields": fields})

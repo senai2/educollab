@@ -337,4 +337,16 @@ jQuery(document).ready(function($) {
 	}
 	stickyFillInit();
 
+	$('.component-explore').find('.field-buttons').on('click', function (e) {
+		console.log("test")
+		$('.component-explore').find(".subject-list.active.show").each(function (index) {
+			$(this).removeClass('active');
+			$(this).removeClass('show');
+		})
+		$('.component-explore').find(".topic-list-item.active").each(function (index) {
+			$(this).removeClass('active');
+		})
+		e.preventDefault()
+	})
+
 });
