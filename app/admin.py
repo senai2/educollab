@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Member, File, Field, Topic, Curriculum, Institution, Bit, Comment, Upvote, Subscription
+from .models import Member, File, Field, Topic, Curriculum, Institution, Bit, Comment, Upvote, Subscription, Subject
 
 # Register your models here.
 
@@ -22,6 +22,11 @@ class TopicAdmin(admin.ModelAdmin):
     list_display = ('title', 'field', 'id')
 
 admin.site.register(Topic, TopicAdmin)
+
+class SubjectAdmin(admin.ModelAdmin):
+    list_display = ('title', 'topic', 'id')
+
+admin.site.register(Subject, SubjectAdmin)
 
 class CurriculumAdmin(admin.ModelAdmin):
     list_display = ('title', 'posted_by', 'topic', 'id')
