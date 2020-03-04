@@ -66,7 +66,7 @@ class Curriculum(models.Model):
 
 class Bit(models.Model):
     title = models.CharField(max_length=100)
-    bit_type = models.CharField(max_length=100)
+    bit_type = models.CharField(max_length=100, blank=True)
     description = models.CharField(max_length=1000, default="")
     file = models.ForeignKey(File, related_name='bit', on_delete=models.CASCADE, null=True, blank=True)
     text = models.CharField(max_length=2000, blank=True)
@@ -106,7 +106,7 @@ class Upvote(models.Model):
     bit = models.ForeignKey(Bit, related_name='upvote', on_delete=models.CASCADE, null=True)
     curriculum = models.ForeignKey(Curriculum, related_name='upvote', on_delete=models.CASCADE, null=True) 
     member = models.ForeignKey(Member, related_name='upvote', on_delete=models.CASCADE)
-    changelog = models.ForeignKey(ChangeLog, related_name='upvote', on_delete=models.CASCADE)
+    changelog = models.ForeignKey(ChangeLog, related_name='upvote', on_delete=models.CASCADE, null=True)
 
 class Subscription(models.Model):
     curriculum = models.ForeignKey(Curriculum, related_name='subscription', on_delete=models.CASCADE, null=True)
