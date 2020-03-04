@@ -15,17 +15,17 @@ def index(request):
 
 def profile(request,uname):
     if not request.user.is_authenticated:
-        return redirect('home')
+        return redirect('login')
     return view_profile(request, uname)
 
 def myprofile(request):
     if not request.user.is_authenticated:
-        return redirect('home')
+        return redirect('login')
     return view_profile(request, request.user.username)
 
 def editprofile(request):
     if not request.user.is_authenticated:
-        return redirect('home')
+        return redirect('login')
     return edit_profile(request)
 
 def signup(request):
