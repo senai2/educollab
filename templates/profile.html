@@ -21,6 +21,7 @@
             </div>
         </div>
         <div class="col-lg-9">
+            <div><b>{{name}}'s Activity</b></div>
             {% for c in c_list %}
                 <div>
                 Title: {{c.title}}
@@ -34,9 +35,7 @@
                         Comment Count: {{b.comments}}
                     </div>
                 {% endfor %}
-                </div>
-
-                
+                </div>                
 			{% endfor %}
         </div>
     </div>

@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 def view_profile(request, m_id, my_profile):
     app_member_details = get_object_or_404(Member, u_id=m_id)
     user_details = get_object_or_404(User, id=m_id)
-
+    
     curriculums = Curriculum.objects.filter(posted_by=m_id)
 
     c_list = []
@@ -27,6 +27,7 @@ def view_profile(request, m_id, my_profile):
 
     context = {
         'member' : app_member_details,
-        'c_list' : c_list
+        'c_list' : c_list,
+        'name' : user_details.first_name + ' ' + user_details.last_name
     }
     return render(request, 'profile.html', context)
