@@ -26,6 +26,8 @@
                 <div>
                 Title: {{c.title}}
                 Desc: {{c.description}}
+                {{c.created_on}}
+                {{c.last_modified}}
                 {% for b in c.b_list %}
                     <div>
                     {{b.title}}

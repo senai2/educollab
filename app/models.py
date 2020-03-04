@@ -49,9 +49,14 @@ class Curriculum(models.Model):
     institution = models.ForeignKey(Institution, related_name='curriculum', on_delete=models.CASCADE)
     description = models.CharField(max_length=1000, default="", blank=True)
     posted_by = models.ForeignKey(Member, related_name='curriculum', on_delete=models.CASCADE, default=1)
+    created_on = models.DateTimeField(auto_now_add=True, null=True)
+    last_modified = models.DateTimeField(auto_now=True, null=True)
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        ordering = ['-last_modified']
 
 class FileType(models.Model):
     type = models.CharField(max_length=20)
@@ -66,17 +71,25 @@ class Bit(models.Model):
     file = models.ForeignKey(File, related_name='bit', on_delete=models.CASCADE, null=True, blank=True)
     url = models.CharField(max_length=512, blank=True)
     curriculum = models.ForeignKey(Curriculum, related_name='bit', on_delete=models.CASCADE)
+    created_on = models.DateTimeField(auto_now_add=True, null=True)
+    last_modified = models.DateTimeField(auto_now=True, null=True)
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        ordering = ['-last_modified']
 
 class Comment(models.Model):
     comment = models.CharField(max_length=1000)
     bit = models.ForeignKey(Bit, related_name='comment', on_delete=models.CASCADE)
     member = models.ForeignKey(Member, related_name='comment', on_delete=models.CASCADE)
+    created_on = models.DateTimeField(auto_now_add=True, null=True)
+    last_modified = models.DateTimeField(auto_now=True, null=True)
 
     def __str__(self):
         return self.comment
+        
 
 class Upvote(models.Model):
     bit = models.ForeignKey(Bit, related_name='upvote', on_delete=models.CASCADE)
