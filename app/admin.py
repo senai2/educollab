@@ -29,7 +29,7 @@ class SubjectAdmin(admin.ModelAdmin):
 admin.site.register(Subject, SubjectAdmin)
 
 class CurriculumAdmin(admin.ModelAdmin):
-    list_display = ('title', 'posted_by', 'topic', 'id')
+    list_display = ('title', 'posted_by', 'subject', 'id')
 
 admin.site.register(Curriculum, CurriculumAdmin)
 

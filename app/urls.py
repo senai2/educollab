@@ -7,4 +7,5 @@ urlpatterns = [
     path('signup/', views.signup),
     path('profile/', views.profile),
     path('subjects/<sid>', views.subject, name="subjects"),
+    path('create-curriculum/', views.createcurriculum)
 ]

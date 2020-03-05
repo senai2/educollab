@@ -52,7 +52,7 @@ class Subject(models.Model):
 
 class Curriculum(models.Model):
     title = models.CharField(max_length=100)
-    topic = models.ForeignKey(Subject, related_name='curriculum', on_delete=models.CASCADE)
+    subject = models.ForeignKey(Subject, related_name='curriculum', on_delete=models.CASCADE)
     description = models.CharField(max_length=1000, default="", blank=True)
     posted_by = models.ForeignKey(Member, related_name='curriculum', on_delete=models.CASCADE, default=1)
     created_on = models.DateTimeField(auto_now_add=True, null=True)

@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from .utils import check_user_id
 from .forms import SignUpForm
 from datetime import datetime
-from app.models import Field, Subject
+from app.models import Field, Subject, Topic
 
 # Create your views here.
 def index(request):
@@ -66,3 +66,25 @@ def subject(request, sid):
         'subject': subject
     }
     return render(request, 'subject.html', context)
+
+def createcurriculum(request):
+
+    # dropdown list menu
+    fields = Field.objects.all()
+    topics = Topic.objects.all()
+    subjects = Subject.objects.all()
+
+    form_type = 'Create'
+
+    if request.method == 'POST':
+        context = {
+            'type' : form_type
+        }
+        return render(request, 'curriculum-form.html', context)
+    else:
+        form = {}
+        context = {
+            'form' : form,
+            'type' : form_type
+        }
+        return render(request, 'curriculum-form.html', context)

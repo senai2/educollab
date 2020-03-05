@@ -11,3 +11,32 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
+
+class CurriculumForm(forms.Form):
+    name = forms.CharField(
+        max_length=60,
+        widget=forms.TextInput(attrs={
+            "class": "form-control",
+            "placeholder": "Your Name"
+        })
+    )
+    email = forms.CharField(
+        max_length=60,
+        widget=forms.TextInput(attrs={
+            "class": "form-control",
+            "placeholder": "Your Email"
+        })
+    )
+    subject = forms.CharField(
+        max_length=60,
+        widget=forms.TextInput(attrs={
+            "class": "form-control",
+            "placeholder": "Subject"
+        })
+    )
+    message = forms.CharField(widget=forms.Textarea(
+        attrs={
+            "class": "form-control",
+            "placeholder": "Message"
+        })
+    )
