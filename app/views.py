@@ -15,8 +15,11 @@ def index(request):
         check_user_id(current_user)
         # TODO: filter only based on subscriptiuos of user
         changelogs = ChangeLog.objects.all
-        context = {"changelogs": changelogs}
-        return render(request, 'feeds.html', context)
+        context = {
+            "changelogs": changelogs,
+            "current_user": current_user
+        }
+        return render(request, 'feeds/index.html', context)
     else:
         return render(request, 'index.html', {})
 
