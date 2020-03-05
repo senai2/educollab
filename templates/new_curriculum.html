@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Shittiest html form ever -->
+<form method="post" style="margin: 70px">
+
+    <!-- Curriculum details further -->
+    <H5>Curriculum Details:</H3>
+
+    <!-- Title for the curriculum -->
+	<label>Title</label><br /> 
+    <input name="name" type="text" required/>  
+    <br /> <br /> 
+
+    <!-- Description for the curriculum -->
+	<label>Description</label><br /> 
+    <textarea name="name" rows="4" cols="50" required> </textarea>
+    <br /> <br /> 
+    
+    <!-- Dropdown for Field -->
+    <label>Field:</label>
+    <select id="field">
+      <option>Field 1</option>
+    </select> 
+    <br /> <br />
+
+    <!-- Dropdown for Topic -->
+    <label>Topic:</label>
+    <select id="field">
+      <option>Topic 1</option>
+    </select> 
+    <br /> <br />
+
+    <!-- Dropdown for Subject -->
+    <label>Subject:</label>
+    <select id="field">
+      <option>Subject 1</option>
+    </select> 
+    <br /> <br /> <br />
+
+    <!-- Bit details further -->
+    <H5>Bit Details:</H3>
+
+    <!-- Title for the bit -->
+	<label>Bit Title</label><br /> 
+    <input name="name" type="text"/>  
+    <br /> <br /> 
+
+    <!-- Description for the bit -->
+	<label>Bit Description</label><br /> 
+    <textarea name="name" rows="4" cols="50"> </textarea>
+    <br /> <br /> 
+    
+    <!-- Adding bits -->
+    <H6>Add Either a Text or File:</H6>
+
+    <!-- Inspiration for text -->
+	<label>Whatever Text (URL, quote, suck a dick): &nbsp;&nbsp;&nbsp;&nbsp;</label> 
+    <input name="name" type="text"/>  
+
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+
+    <!-- Uploading a bit -->
+	<label>Upload bit and suck a tit: &nbsp;&nbsp;&nbsp;&nbsp; </label>
+    <input type="file" id="myFile" name="filename">
+    <br />
+
+    <!-- Add more bits -->
+    <a href="">Add another bit...</a>
+    <br /> <br /> 
+
+    <!-- Submit the damn form -->
+    <input type="submit" value="Submit for magic"> 
+
+
+</form>
+</div>
+
+{% endblock %}

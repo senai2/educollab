@@ -1,7 +1,7 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from .utils import check_user_id
-from .forms import SignUpForm
+from .forms import SignUpForm, NewCurriculum
 from datetime import datetime
 from app.models import Field, Subject
 
@@ -40,6 +40,17 @@ def index(request):
 def profile(request):
     return render(request, 'profile.html', {})
 
+def new_curriculum(request):
+    if request.method == 'POST':
+        form = NewCurriculum(request.POST)
+        
+        if form.is_valid():
+            return redirect('home') #For now
+    else:
+        form = NewCurriculum()
+    
+    return render(request, 'new_curriculum.html', {'form':form})
+
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
@@ -50,8 +61,9 @@ def signup(request):
             user = authenticate(username=username, password=raw_password)
             login(request, user)
             return redirect('home')
-    else:
-        form = SignUpForm()
+        else:
+            form = SignUpForm()
+        
     return render(request, 'registration/signup.html', {'form': form})
 
 

@@ -11,3 +11,7 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
+
+
+class NewCurriculum(forms.Form):
+    bruh = forms.CharField(label='bruh', max_length=100)
