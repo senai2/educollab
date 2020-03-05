@@ -4,6 +4,7 @@ from .utils import check_user_id, create_member_obj
 from .forms import SignUpForm
 from datetime import datetime
 from app.models import Field, Subject
+from app import curriculum
 
 # Create your views here.
 def index(request):
@@ -34,13 +35,12 @@ def index(request):
     else:
         return render(request, 'index.html', {})
 
-# def signup(request):
-#     return render(request, 'registration/signup.html')
-
 def profile(request):
     return render(request, 'profile.html', {})
 
 def signup(request):
+    if request.user.is_authenticated:
+        return redirect('home')
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -67,3 +67,23 @@ def subject(request, sid):
         'subject': subject
     }
     return render(request, 'subject.html', context)
+
+def create_curriculum(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    return curriculum.createcurriculum(request)
+
+def update_currilculum(request, c_id):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    return curriculum.updatecurriculum(request, c_id)
+
+def create_bit(request, c_id):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    return curriculum.createbit(request, c_id)
+
+def update_bit(request, c_id, b_id):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    return curriculum.updatebit(request, c_id, b_id)

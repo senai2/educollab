@@ -13,3 +13,58 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name','institution', 'designation', 'email', 'password1', 'password2', )
+
+class CurriculumForm(forms.Form):
+    title = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={
+            "class": "form-control",
+            "placeholder": "Curriculum Title"
+        })
+    )
+    description = forms.CharField(
+        max_length=1000,
+        widget=forms.TextInput(attrs={
+            "class": "form-control",
+            "placeholder": "Curriculum Description"
+        })
+    )
+
+class BitForm(forms.Form):
+    title = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={
+            "class": "form-control",
+            "placeholder": "Bit Title"
+        })
+    )
+
+    bit_type = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={
+            "class": "form-control",
+            "placeholder": "Bit Type"
+        })
+    )
+
+    description = forms.CharField(
+        max_length=1000,
+        required=False,
+        widget=forms.TextInput(attrs={
+            "class": "form-control",
+            "placeholder": "Bit Description"
+        })
+    )
+
+    file = forms.FileField(
+        required=False
+    )
+
+    text = forms.CharField(
+        max_length=1000,
+        required=False,
+        widget=forms.TextInput(attrs={
+            "class": "form-control",
+            "placeholder": "Text Content"
+        })
+    )

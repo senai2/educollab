@@ -10,7 +10,7 @@ class Member(models.Model):
     email = models.CharField(max_length=60)
     institution = models.CharField(max_length=100, null=True)
     designation = models.CharField(max_length=200)
-    image = models.FileField(null=True, default=None)
+    image = models.FileField(null=True, blank=True)
 
     def __str__(self):
         return self.username
@@ -53,7 +53,6 @@ class Bit(models.Model):
 
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
-    posted_by = models.ForeignKey(Member, related_name='bit', on_delete=models.CASCADE)
     bit_type = models.CharField(max_length=100)
     curriculum = models.ForeignKey(Curriculum, related_name='bit', on_delete=models.CASCADE)
     title = models.CharField(max_length=100)    
@@ -71,8 +70,8 @@ class ChangeLog(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     member = models.ForeignKey(Member, related_name='changelog', on_delete=models.CASCADE)
     description = models.CharField(max_length=1000)
-    curriculum = models.ForeignKey(Curriculum, related_name='changelog', on_delete=models.CASCADE, null=True)
-    bit = models.ForeignKey(Bit, related_name='changelog', on_delete=models.CASCADE, null=True, blank=True, default=None)
+    curriculum = models.ForeignKey(Curriculum, related_name='changelog', on_delete=models.CASCADE, null=True, default=None)
+    bit = models.ForeignKey(Bit, related_name='changelog', on_delete=models.CASCADE, null=True, default=None)
 
     def __str__(self):
         return self.description
