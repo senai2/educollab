@@ -18,12 +18,12 @@
             </div>
         </div>
         <div class="col-8">
-            {% for id, feed in feeds.items %}
+            {% for changelog in changelogs %}
             <div class="row mb-2">
                 <article class="card w-100">
-                    <h5 class="card-header">{{feed.title}}</h5>
+                    <h5 class="card-header">{{changelog.description}}</h5>
                     <div class="card-body">
-                        Some body text
+                        {{changelog.description}}
                     </div>
                 </article>
             </div>
