@@ -29,6 +29,29 @@
             </div>
             {% endfor %}
         </div>
+
+        <!-- Referrer page will be reloaded -->
+        <!-- changelog followed by id -->
+        <form method="post" action="/comment/changelog/1">
+            {% csrf_token %}
+            <input type="text" name="comment"/>
+            <input type="submit" value="Comment">
+        </form>
+
+        <!-- bit followed by id -->
+        <form method="post" action="/comment/bit/1">
+            {% csrf_token %}
+            <input type="text" name="comment"/>
+            <input type="submit" value="Comment">
+        </form>
+
+        <!-- curriculum followed by id -->
+        <form method="post" action="/comment/curriculum/1">
+            {% csrf_token %}
+            <input type="text" name="comment"/>
+            <input type="submit" value="Comment">
+        </form>
+
     </div>
 </div>
 {% endblock %}
