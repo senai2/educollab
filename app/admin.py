@@ -1,59 +1,68 @@
 from django.contrib import admin
-from .models import Member, File, Field, Topic, Curriculum, Institution, Bit, Comment, Upvote, Subscription, Subject
+from .models import Member, File, Field, Topic, Curriculum, Institution, Bit, Comment, Upvote, Subscription, Subject, Teach, ChangeLog
 
 # Register your models here.
 
-class InstitutionAdmin(admin.ModelAdmin):
-    list_display = ('title', 'id')
-
-admin.site.register(Institution, InstitutionAdmin)
-
-class MemberAdmin(admin.ModelAdmin):
-    list_display = ('username', 'u_id', 'institution', 'designation')
-
-admin.site.register(Member, MemberAdmin)
-
-class FieldAdmin(admin.ModelAdmin):
-    list_display = ('title','id')
-
-admin.site.register(Field, FieldAdmin)
-
-class TopicAdmin(admin.ModelAdmin):
-    list_display = ('title', 'field', 'id')
-
-admin.site.register(Topic, TopicAdmin)
-
-class SubjectAdmin(admin.ModelAdmin):
-    list_display = ('title', 'topic', 'id')
-
-admin.site.register(Subject, SubjectAdmin)
-
-class CurriculumAdmin(admin.ModelAdmin):
-    list_display = ('title', 'posted_by', 'topic', 'id')
-
-admin.site.register(Curriculum, CurriculumAdmin)
-
-class BitAdmin(admin.ModelAdmin):
-    list_display = ('title','curriculum', 'id')
-
-admin.site.register(Bit, BitAdmin)
-
-class FileAdmin(admin.ModelAdmin):
-    list_display = ('file', 'id')
-
-admin.site.register(File, FileAdmin)
-
-class CommentAdmin(admin.ModelAdmin):
-    list_display = ('comment', 'bit', 'member', 'id')
-
-admin.site.register(Comment, CommentAdmin)
-
 class UpvoteAdmin(admin.ModelAdmin):
-    list_display = ('bit', 'member', 'id')
+    list_display = ('id', 'member', 'curriculum', 'bit','changelog')
 
 admin.site.register(Upvote, UpvoteAdmin)
 
+class ChangeLogAdmin(admin.ModelAdmin):
+    list_display = ('id', 'created_on', 'member', 'description', 'curriculum', 'bit', 'comment')
+
+admin.site.register(ChangeLog, ChangeLogAdmin)
+
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('id', 'created_on', 'last_modified', 'member', 'curriculum', 'bit', 'comment')
+
+admin.site.register(Comment, CommentAdmin)
+
+class BitAdmin(admin.ModelAdmin):
+    list_display = ('id', 'created_on', 'last_modified', 'posted_by', 'bit_type', 'title', 'description', 'curriculum', 'file', 'text')
+
+admin.site.register(Bit, BitAdmin)
+
 class SubscriptionAdmin(admin.ModelAdmin):
-    list_display = ('curriculum', 'member', 'id')
+    list_display = ('id', 'member', 'subject', 'curriculum')
 
 admin.site.register(Subscription, SubscriptionAdmin)
+
+class TeachAdmin(admin.ModelAdmin):
+    list_display = ('id', 'member', 'curriculum')
+
+admin.site.register(Teach, TeachAdmin)
+
+class CurriculumAdmin(admin.ModelAdmin):
+    list_display = ('id', 'created_on', 'last_modified', 'posted_by','subject', 'title', 'description')
+
+admin.site.register(Curriculum, CurriculumAdmin)
+
+class MemberInline(admin.ModelAdmin):
+    list_display = ('u_id','created_on', 'username', 'full_name', 'email', 'institution', 'designation', 'image')
+
+admin.site.register(Member, MemberInline)
+
+class FileAdmin(admin.ModelAdmin):
+    list_display = ('id', 'file')
+
+admin.site.register(File, FileAdmin)
+class InstitutionAdmin(admin.ModelAdmin):
+    list_display = ('id', 'title')
+
+admin.site.register(Institution, InstitutionAdmin)
+
+class SubjectAdmin(admin.ModelAdmin):
+    list_display = ('id', 'topic', 'title')
+
+admin.site.register(Subject, SubjectAdmin)
+
+class TopicAdmin(admin.ModelAdmin):
+    list_display = ('id', 'field', 'title')
+
+admin.site.register(Topic, TopicAdmin)
+
+class FieldAdmin(admin.ModelAdmin):
+    list_display = ('id', 'title')
+
+admin.site.register(Field, FieldAdmin)
