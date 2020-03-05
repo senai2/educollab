@@ -13,30 +13,56 @@ class SignUpForm(UserCreationForm):
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
 
 class CurriculumForm(forms.Form):
-    name = forms.CharField(
-        max_length=60,
+    title = forms.CharField(
+        max_length=100,
         widget=forms.TextInput(attrs={
             "class": "form-control",
-            "placeholder": "Your Name"
+            "placeholder": "Curriculum Title"
         })
     )
-    email = forms.CharField(
-        max_length=60,
+    description = forms.CharField(
+        max_length=1000,
         widget=forms.TextInput(attrs={
             "class": "form-control",
-            "placeholder": "Your Email"
+            "placeholder": "Curriculum Description"
         })
     )
-    subject = forms.CharField(
-        max_length=60,
+
+class BitForm(forms.Form):
+    title = forms.CharField(
+        max_length=100,
         widget=forms.TextInput(attrs={
             "class": "form-control",
-            "placeholder": "Subject"
+            "placeholder": "Bit Title"
         })
     )
-    message = forms.CharField(widget=forms.Textarea(
-        attrs={
+
+    bit_type = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={
             "class": "form-control",
-            "placeholder": "Message"
+            "placeholder": "Bit Type"
+        })
+    )
+
+    description = forms.CharField(
+        max_length=1000,
+        required=False,
+        widget=forms.TextInput(attrs={
+            "class": "form-control",
+            "placeholder": "Bit Description"
+        })
+    )
+
+    file = forms.FileField(
+        required=False
+    )
+
+    text = forms.CharField(
+        max_length=1000,
+        required=False,
+        widget=forms.TextInput(attrs={
+            "class": "form-control",
+            "placeholder": "Text Content"
         })
     )
