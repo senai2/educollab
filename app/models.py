@@ -10,7 +10,7 @@ class Member(models.Model):
     email = models.CharField(max_length=60)
     institution = models.CharField(max_length=100, null=True)
     designation = models.CharField(max_length=200)
-    image = models.FileField(null=True, default=None)
+    image = models.FileField(null=True, blank=True)
 
     def __str__(self):
         return self.username
