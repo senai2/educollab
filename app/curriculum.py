@@ -8,6 +8,12 @@ from app.models import Field, Subject, Topic, Curriculum, Member, Bit, ChangeLog
 from educollab import settings
 import os
 
+# 3 THINGS TODO:
+#
+# 1. Make sure only curriculum owner can edit curriculum
+# 2. File upload - name should be customized
+# 3. cleaned_data() - request.form data should be cleaned() in bitupdate() alone
+
 def createcurriculum(request):
 
     # dropdown list to choose
@@ -139,7 +145,8 @@ def updatebit(request, c_id, b_id):
         data = request.POST
         #TODO: fileupload
         #file_upload(request)
-        bit.title = data.get("title"),
+        
+        bit.title = data["title"],
         bit.bit_type = data["bit_type"],
         bit.description = data["description"],
         bit.text = data["text"],
