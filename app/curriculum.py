@@ -32,7 +32,8 @@ def createcurriculum(request):
         log_obj = ChangeLog(
             member=Member(id=request.user.id),
             description='New Curriculum Created + more details ',
-            curriculum=Curriculum(id=c_obj.id)
+            curriculum=Curriculum(id=c_obj.id),
+            operation='create'
         )
         log_obj.save()
 
@@ -91,7 +92,8 @@ def updatecurriculum(request, c_id):
         log_obj = ChangeLog(
             member=Member(id=request.user.id),
             description='Curriculum Updated + more details ',
-            curriculum=Curriculum(id=curriculum.id)
+            curriculum=Curriculum(id=curriculum.id),
+            operation='update'
         )
         log_obj.save()
 
@@ -137,7 +139,8 @@ def createbit(request, c_id):
         log_obj = ChangeLog(
             member=Member(id=request.user.id),
             description='Bit Added + more details ',
-            bit=Bit(id=b_obj.id)
+            bit=Bit(id=b_obj.id),
+            operation='create'
         )
         log_obj.save()
         context = {
@@ -175,7 +178,8 @@ def updatebit(request, c_id, b_id):
         log_obj = ChangeLog(
             member=Member(id=request.user.id),
             description='Bit Updated + more details ',
-            bit=Bit(id=bit.id)
+            bit=Bit(id=bit.id),
+            operation='update'
         )
         log_obj.save()
 
