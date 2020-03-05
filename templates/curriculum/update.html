@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    {% if success %}
+    <div>{{success}}</div>
+    <a>Link to add/edit bit</a>
+    {% else %}
+    {{type}} Curriculum
+
+    {{ form.non_field_errors }}
+    <div id="content-main">
+        <form method="post" action="{% url 'curriculum_update' c_id=curriculum.id %}">
+            {% csrf_token %}
+
+            {% include "curriculum/_form.html" %}
+        </form>
+    </div>
+
+
+</div>
+<script>
+    //  subject filter scripts based on field and topic
+</script>
+{% endif %}
+{% endblock %}
