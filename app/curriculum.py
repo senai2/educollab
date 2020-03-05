@@ -4,7 +4,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .utils import check_user_id
 from .forms import SignUpForm, CurriculumForm, BitForm
 from datetime import datetime
-from app.models import Field, Subject, Topic, Curriculum, Member, Bit
+from app.models import Field, Subject, Topic, Curriculum, Member, Bit, ChangeLog
+from educollab import settings
+import os
 
 def createcurriculum(request):
 
@@ -25,7 +27,13 @@ def createcurriculum(request):
         )
 
         c_obj.save()
-        #TODO: Add entry in changelog but what is comment field?
+        
+        log_obj = ChangeLog(
+            member = Member(id=request.user.id),
+            description = 'New Curriculum Created + more details ',
+            curriculum = Curriculum(id=c_obj.id)
+        )
+        log_obj.save()
 
         context = {
             'success' : 'Curriculum created!'
@@ -59,7 +67,12 @@ def updatecurriculum(request, c_id):
         curriculum.description = data['description']
 
         curriculum.save()
-        #TODO: Add entry in changelog
+        log_obj = ChangeLog(
+            member = Member(id=request.user.id),
+            description = 'Curriculum Updated + more details ',
+            curriculum = Curriculum(id=curriculum.id)
+        )
+        log_obj.save()
 
         context = {
             'success' : 'Curriculum updated!'
@@ -77,19 +90,33 @@ def updatecurriculum(request, c_id):
         }
         return render(request, 'curriculum-form.html', context)
 
+# def file_upload(request):
+#     save_path = os.path.join(settings.MEDIA_ROOT, request.FILES['file'])
+#     path = default_storage.save(save_path, request.FILES['file'])
+#     return default_storage.path(path)
+
 def createbit(request, c_id):
     curriculum = get_object_or_404(Curriculum, id=c_id)
     form_type = 'Create'
     if request.method == 'POST':
         data = request.POST
+        #TODO: fileupload
+        #file_upload(request)
         b_obj = Bit(
             title = data["title"],
             bit_type = data["bit_type"],
             description = data["description"],
             text = data["text"],
-            curriculum = Curriculum(id=c_id)
+            curriculum = Curriculum(id=c_id),
+            file = data["file"]
         )
         b_obj.save()
+        log_obj = ChangeLog(
+            member = Member(id=request.user.id),
+            description = 'Bit Added + more details ',
+            bit = Bit(id=b_obj.id)
+        )
+        log_obj.save()
         context = {
             'success' : 'Bit Added!'
         }
@@ -110,14 +137,23 @@ def updatebit(request, c_id, b_id):
     form_type = 'Update'
     if request.method == 'POST':
         data = request.POST
-        
+        #TODO: fileupload
+        #file_upload(request)
         bit.title = data.get("title"),
         bit.bit_type = data["bit_type"],
         bit.description = data["description"],
         bit.text = data["text"],
         bit.curriculum = Curriculum(id=c_id)
+        bit.file = data["file"]
         
         bit.save()
+
+        log_obj = ChangeLog(
+            member = Member(id=request.user.id),
+            description = 'Bit Updated + more details ',
+            bit = Bit(id=bit.id)
+        )
+        log_obj.save()
 
         context = {
             'success' : 'Bit Updated!'

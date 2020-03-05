@@ -9,7 +9,7 @@ class UpvoteAdmin(admin.ModelAdmin):
 admin.site.register(Upvote, UpvoteAdmin)
 
 class ChangeLogAdmin(admin.ModelAdmin):
-    list_display = ('id', 'created_on', 'member', 'description', 'curriculum', 'bit', 'comment')
+    list_display = ('id', 'created_on', 'member', 'description')
 
 admin.site.register(ChangeLog, ChangeLogAdmin)
 
