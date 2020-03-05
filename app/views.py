@@ -1,6 +1,6 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
-from .utils import check_user_id
+from .utils import check_user_id, create_member_obj
 from .forms import SignUpForm
 from datetime import datetime
 from app.models import Field, Subject
@@ -49,6 +49,7 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
+            create_member_obj(request.POST, user.id)
             return redirect('home')
     else:
         form = SignUpForm()

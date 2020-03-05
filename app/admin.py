@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Member, File, Field, Topic, Curriculum, Institution, Bit, Comment, Upvote, Subscription, Subject, Teach, ChangeLog
+from .models import Member, Field, Topic, Curriculum, Bit, Comment, Upvote, Subscription, Subject, Teach, ChangeLog
 
 # Register your models here.
 
@@ -42,15 +42,6 @@ class MemberInline(admin.ModelAdmin):
     list_display = ('u_id','created_on', 'username', 'full_name', 'email', 'institution', 'designation', 'image')
 
 admin.site.register(Member, MemberInline)
-
-class FileAdmin(admin.ModelAdmin):
-    list_display = ('id', 'file')
-
-admin.site.register(File, FileAdmin)
-class InstitutionAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title')
-
-admin.site.register(Institution, InstitutionAdmin)
 
 class SubjectAdmin(admin.ModelAdmin):
     list_display = ('id', 'topic', 'title')
