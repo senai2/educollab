@@ -21,9 +21,9 @@
             {% for changelog in changelogs %}
             <div class="row mb-2">
                 <article class="card w-100">
-                    <h5 class="card-header">{{changelog.title}}</h5>
+                    <h5 class="card-header">{{changelog.description}}</h5>
                     <div class="card-body">
-                        changelog.description
+                        {{changelog.description}}
                     </div>
                 </article>
             </div>

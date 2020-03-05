@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+
+    My Curricula
+
+    <a class="btn btn-primary" href="{% url 'curriculum_create' %}" role="button">Create New Curriculum</a>
+
+</div>
+{% endblock %}

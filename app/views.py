@@ -55,20 +55,36 @@ def subject(request, sid):
     }
     return render(request, 'subject.html', context)
 
-def create_curriculum(request):
+
+def curriculum_index(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    return curriculum.indexcurriculum(request)
+
+
+def curriculum_create(request):
     if not request.user.is_authenticated:
         return redirect('login')
     return curriculum.createcurriculum(request)
 
-def update_currilculum(request, c_id):
+
+def curriculum_show(request, c_id):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    return curriculum.showcurriculum(request, c_id)
+
+
+def curriculum_update(request, c_id):
     if not request.user.is_authenticated:
         return redirect('login')
     return curriculum.updatecurriculum(request, c_id)
+
 
 def create_bit(request, c_id):
     if not request.user.is_authenticated:
         return redirect('login')
     return curriculum.createbit(request, c_id)
+
 
 def update_bit(request, c_id, b_id):
     if not request.user.is_authenticated:
