@@ -19,7 +19,7 @@ class CommentAdmin(admin.ModelAdmin):
 admin.site.register(Comment, CommentAdmin)
 
 class BitAdmin(admin.ModelAdmin):
-    list_display = ('id', 'created_on', 'last_modified', 'posted_by', 'bit_type', 'title', 'description', 'curriculum', 'file', 'text')
+    list_display = ('id', 'created_on', 'last_modified', 'bit_type', 'title', 'description', 'curriculum', 'file', 'text')
 
 admin.site.register(Bit, BitAdmin)
 
