@@ -8,11 +8,12 @@ from app.models import Field, Subject, Topic, Curriculum, Member, Bit, ChangeLog
 from educollab import settings
 import os
 
-# 3 THINGS TODO:
+# 4 THINGS TODO:
 #
 # 1. Make sure only curriculum owner can edit curriculum
 # 2. File upload - name should be customized
 # 3. cleaned_data() - request.form data should be cleaned() in bitupdate() alone
+# 4. Delete operation
 
 def createcurriculum(request):
 

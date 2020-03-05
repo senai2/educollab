@@ -7,8 +7,8 @@ urlpatterns = [
     path('signup/', views.signup),
     path('profile/', views.profile),
     path('subjects/<sid>', views.subject, name="subjects"),
-    path('create-curriculum/', views.create_curriculum),
-    path('update-curriculum/<int:c_id>', views.update_currilculum),
-    path('<int:c_id>/create-bit', views.create_bit),
-    path('<int:c_id>/update-bit/<int:b_id>', views.update_bit)
+    path('curriculum/new', views.create_curriculum),
+    path('curriculum/<int:c_id>/edit', views.update_currilculum),
+    path('curriculum/<int:c_id>/bit/new', views.create_bit),
+    path('curriculum/<int:c_id>/bit/<int:b_id>/edit', views.update_bit)
 ]
