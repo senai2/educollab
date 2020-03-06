@@ -17,8 +17,10 @@
                     <div class="col-10 col-sm-11">
                         {% if changelog.member.full_name != '' %}
                             <h4>{{ changelog.member.full_name}}</h4>
+                        {% elif changelog.member.username != '' %}
+                            <h4>Super user - {{changelog.member.username}}</h4>
                         {% else %}
-                            <h4>John Doe (Full name not added)</h4>
+                            <h4>John Doe (no info available)</h4>
                         {% endif %}
                         {{changelog.created_on}}
                     </div>
