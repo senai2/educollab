@@ -14,5 +14,6 @@ urlpatterns = [
          views.curriculum_update, name="curriculum_update"),
     path('curriculum/<int:c_id>/bit/<int:b_id>/', views.update_bit, name="bit_show"),
     path('curriculum/<int:c_id>/bit/new', views.create_bit),
-    path('curriculum/<int:c_id>/bit/<int:b_id>/edit', views.update_bit)
+    path('curriculum/<int:c_id>/bit/<int:b_id>/edit', views.update_bit),
+    path('comment/<str:c_type>/<int:c_id>', views.comment)
 ]

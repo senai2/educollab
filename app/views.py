@@ -1,6 +1,6 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
-from .utils import check_user_id, create_member_obj
+from .utils import check_user_id, create_member_obj, add_comment
 from .forms import SignUpForm
 from datetime import datetime
 from app.models import Field, Subject, ChangeLog
@@ -93,3 +93,8 @@ def update_bit(request, c_id, b_id):
     if not request.user.is_authenticated:
         return redirect('login')
     return curriculum.updatebit(request, c_id, b_id)
+
+def comment(request, c_type, c_id):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    return add_comment(request, c_type, c_id)
