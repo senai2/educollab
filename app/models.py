@@ -70,6 +70,7 @@ class ChangeLog(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     member = models.ForeignKey(Member, related_name='changelog', on_delete=models.CASCADE)
     description = models.CharField(max_length=1000)
+    operation = models.CharField(max_length=100, null=True, blank=True)
     curriculum = models.ForeignKey(Curriculum, related_name='changelog', on_delete=models.CASCADE, null=True, default=None)
     bit = models.ForeignKey(Bit, related_name='changelog', on_delete=models.CASCADE, null=True, default=None)
     subject = models.ForeignKey(Subject, related_name='changelog', on_delete=models.CASCADE, null=True, default=None)
@@ -82,9 +83,9 @@ class Comment(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     member = models.ForeignKey(Member, related_name='comment', on_delete=models.CASCADE)
-    curriculum = models.ForeignKey(Curriculum, related_name='comment', on_delete=models.CASCADE, null=True)
-    bit = models.ForeignKey(Bit, related_name='comment', on_delete=models.CASCADE, null=True)
-    changelog = models.ForeignKey(ChangeLog, related_name='comment', on_delete=models.CASCADE, null=True)
+    curriculum = models.ForeignKey(Curriculum, related_name='comment', on_delete=models.CASCADE, null=True, blank=True)
+    bit = models.ForeignKey(Bit, related_name='comment', on_delete=models.CASCADE, null=True, blank=True)
+    changelog = models.ForeignKey(ChangeLog, related_name='comment', on_delete=models.CASCADE, null=True, blank=True)
     comment = models.CharField(max_length=1000)
 
     def __str__(self):
