@@ -29,6 +29,14 @@ def createcurriculum(request):
 
         c_obj.save()
 
+        # Automatic subscribing to own made curriculum
+        sub_obj = Subscription(
+                member=Member(id=request.user.id),
+                subject=None,
+                curriculum=Curriculum(id=c_obj.id)
+            )
+        sub_obj.save()
+
         log_obj = ChangeLog(
             member=Member(id=request.user.id),
             description='New Curriculum Created + more details ',
@@ -54,7 +62,7 @@ def createcurriculum(request):
 
 def indexcurriculum(request):
 
-    curriculums = Curriculum.objects.all()
+    curriculums = Curriculum.objects.filter(posted_by=request.user.id)
     if request.method == 'GET':
         context = {'curriculums': curriculums}
         return render(request, 'curriculum/index.html', context)
