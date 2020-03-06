@@ -82,6 +82,10 @@ def curriculum_update(request, c_id):
         return redirect('login')
     return curriculum.updatecurriculum(request, c_id)
 
+def curriculum_comment_create(request, c_id):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    return add_comment(request, "changelog", c_id)
 
 def create_bit(request, c_id):
     if not request.user.is_authenticated:

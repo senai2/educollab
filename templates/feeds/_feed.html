@@ -44,22 +44,28 @@
             <div class="row align-items-end">
                 <div class="col-8">
                     <a href="#" class="btn btn-sm btn-secondary">
-                        Upvotes <span class="badge badge-light d-inline">99</span>
+                        Upvote <span class="badge badge-light d-inline">99</span>
                     </a>
-                    <a href="#" class="btn btn-sm btn-secondary">
+                    <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse"
+                        data-target="#collapse-comment-{{changelog.id}}" aria-expanded="false"
+                        aria-controls="collapseExample">
                         Comments <span class="badge badge-light d-inline">99</span>
-                    </a>
+                    </button>
                 </div>
                 <div class="ml-auto col-4 text-right">
                     {% if changelog.bit %}
-                    <a href="{% url 'bit_show' c_id=changelog.bit.curriculum.id b_id=changelog.bit.id %}" class="btn btn-primary">Go</a>
+                    <a href="{% url 'bit_show' c_id=changelog.bit.curriculum.id b_id=changelog.bit.id %}"
+                        class="btn btn-primary">Go</a>
                     {% else %}
                     <a href="{% url 'curriculum_show' c_id=changelog.curriculum.id %}" class="btn btn-primary">Go</a>
                     {% endif %}
                 </div>
             </div>
-
-            
+            <div class="collapse row" id="collapse-comment-{{changelog.id}}">
+                <div class="col-12">
+                    {% include "./_comments.html" %}
+                </div>
+            </div>
         </div>
     </article>
 </div>
