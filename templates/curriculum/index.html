@@ -29,7 +29,7 @@ th, td{
             {% for curriculum in curriculums  %}
             <tr>
                 <td>{{curriculum.id}}</td>
-                <td>{{curriculum.subject}}</td>
+                <td><a href="/curriculum/{{curriculum.id}}">{{curriculum.subject}}</a></td>
                 <td>{{curriculum.title}}</td>
                 <td>{{curriculum.description}}</td>
             </tr>

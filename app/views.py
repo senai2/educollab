@@ -6,8 +6,6 @@ from datetime import datetime
 from app.models import Field, Subject, ChangeLog
 from app import curriculum, subject
 
-# Create your views here.
-
 
 def index(request):
     current_user = request.user
@@ -27,7 +25,7 @@ def index(request):
 
 def profile(request):
     return render(request, 'profile.html', {})
-    
+
 
 def signup(request):
     if request.user.is_authenticated:
@@ -81,10 +79,12 @@ def curriculum_update(request, c_id):
         return redirect('login')
     return curriculum.updatecurriculum(request, c_id)
 
+
 def curriculum_comment_create(request, c_id):
     if not request.user.is_authenticated:
         return redirect('login')
     return add_comment(request, "changelog", c_id)
+
 
 def create_bit(request, c_id):
     if not request.user.is_authenticated:
@@ -96,6 +96,7 @@ def update_bit(request, c_id, b_id):
     if not request.user.is_authenticated:
         return redirect('login')
     return curriculum.updatebit(request, c_id, b_id)
+
 
 def comment(request, c_type, c_id):
     if not request.user.is_authenticated:

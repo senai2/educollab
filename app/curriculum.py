@@ -31,10 +31,10 @@ def createcurriculum(request):
 
         # Automatic subscribing to own made curriculum
         sub_obj = Subscription(
-                member=Member(id=request.user.id),
-                subject=None,
-                curriculum=Curriculum(id=c_obj.id)
-            )
+            member=Member(id=request.user.id),
+            subject=None,
+            curriculum=Curriculum(id=c_obj.id)
+        )
         sub_obj.save()
 
         log_obj = ChangeLog(
@@ -69,6 +69,11 @@ def indexcurriculum(request):
 
 
 def showcurriculum(request, c_id):
+
+    # Shitty solution for now
+    if not Curriculum.objects.filter(id=c_id):
+        return render(request, 'registration/login.html', {})
+
     curriculum = get_object_or_404(Curriculum, id=c_id)
 
     user_subscription = Subscription.objects.filter(
@@ -121,7 +126,7 @@ def showcurriculum(request, c_id):
                 operation=None,
             )
             log_obj.save()
-            
+
             sub_status = 'Subscribed!'
             button_status = 'Unsubscribe'
 
@@ -138,10 +143,9 @@ def showcurriculum(request, c_id):
         """
 
         if user_subscription:
-            button_status='Unsubscribe'
+            button_status = 'Unsubscribe'
         else:
-            button_status='Subscribe'
-
+            button_status = 'Subscribe'
 
         context = {'curriculum': curriculum,
                    'button_status': button_status}

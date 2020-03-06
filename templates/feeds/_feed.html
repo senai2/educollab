@@ -65,8 +65,10 @@
                     {% if changelog.bit %}
                     <a href="{% url 'bit_show' c_id=changelog.bit.curriculum.id b_id=changelog.bit.id %}"
                         class="btn btn-primary">Go</a>
-                    {% else %}
+                    {% elif changelog.curriculum.id %}
                     <a href="{% url 'curriculum_show' c_id=changelog.curriculum.id %}" class="btn btn-primary">Go</a>
+                    {% else%}
+                    <a href="#" class="btn btn-primary">Don't go</a>
                     {% endif %}
                 </div>
             </div>
