@@ -49,7 +49,7 @@
                     <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse"
                         data-target="#collapse-comment-{{changelog.id}}" aria-expanded="false"
                         aria-controls="collapseExample">
-                        Comments <span class="badge badge-light d-inline">99</span>
+                        Comments <span class="badge badge-light d-inline">{{ changelog.comment.all|length }}</span>
                     </button>
                 </div>
                 <div class="ml-auto col-4 text-right">
