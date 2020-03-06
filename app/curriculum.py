@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .utils import check_user_id
 from .forms import SignUpForm, CurriculumForm, BitForm
 from datetime import datetime
-from app.models import Field, Subject, Topic, Curriculum, Member, Bit, ChangeLog
+from app.models import Field, Subject, Topic, Curriculum, Member, Bit, ChangeLog, Subscription
 from educollab import settings
 import os
 
@@ -60,28 +60,78 @@ def indexcurriculum(request):
 
 
 def showcurriculum(request, c_id):
-
-    # fields = Field.objects.all()
-    # topics = Topic.objects.all()
-    # subjects = Subject.objects.all()
-
     curriculum = get_object_or_404(Curriculum, id=c_id)
-    form_type = 'Subscribe'
 
+    user_subscription = Subscription.objects.filter(
+        member=request.user.id, curriculum=curriculum, subject__isnull=True).exclude(curriculum__isnull=True)
+
+    print(user_subscription)
     if request.method == 'POST':
-        data = request.POST
-        print("here")
-        print(data)
-        context = {'curriculum': curriculum}
+        """
+        Filtering user subscription by only
+        allowing records with curriculums not
+        being NULL and subjects being NULL
+
+        """
+
+        if user_subscription:
+            user_subscription.delete()
+
+            # Updating Change Log for the change
+            reason = 'Unsubscribed from Curriculum' + \
+                str(curriculum.id) + '+ more details'
+            log_obj = ChangeLog(
+                member=Member(id=request.user.id),
+                description=reason,
+                curriculum=Curriculum(id=curriculum.id)
+            )
+            log_obj.save()
+
+            sub_status = 'Unsubscribed!'
+            button_status = 'Subscribe'
+
+        else:
+            sub_obj = Subscription(
+                member=Member(id=request.user.id),
+                subject=None,
+                curriculum=Curriculum(id=curriculum.id)
+            )
+            sub_obj.save()
+
+            # Updating Change Log for the change
+            reason = 'Subscribed to Curriculum' + \
+                str(curriculum.id) + '+ more details'
+            log_obj = ChangeLog(
+                member=Member(id=request.user.id),
+                description=reason,
+                curriculum=Curriculum(id=curriculum.id)
+            )
+            log_obj.save()
+            
+            sub_status = 'Subscribed!'
+            button_status = 'Unsubscribe'
+
+        context = {'curriculum': curriculum,
+                   'sub_status': sub_status,
+                   'button_status': button_status}
         return render(request, 'curriculum/show.html', context)
+
     else:
-        context = {'curriculum': curriculum}
+        """
+        Assuming the other request would be
+        GET request to load the page, placeholder
+        text for button can be set
+        """
+
+        if user_subscription:
+            button_status='Unsubscribe'
+        else:
+            button_status='Subscribe'
+
+
+        context = {'curriculum': curriculum,
+                   'button_status': button_status}
         return render(request, 'curriculum/show.html', context)
-
-    # if request.method == 'GET':
-    #     context = {'curriculum': curriculum}
-    #     return render(request, 'curriculum/show.html', context)
-
 
 
 def updatecurriculum(request, c_id):
@@ -136,7 +186,7 @@ def createbit(request, c_id):
     form_type = 'Create'
     if request.method == 'POST':
         data = request.POST
-        #TODO: fileupload
+        # TODO: fileupload
         # file_upload(request)
         b_obj = Bit(
             title=data["title"],
@@ -173,7 +223,7 @@ def updatebit(request, c_id, b_id):
     form_type = 'Update'
     if request.method == 'POST':
         data = request.POST
-        #TODO: fileupload
+        # TODO: fileupload
         # file_upload(request)
 
         bit.title = data["title"],
