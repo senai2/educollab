@@ -13,7 +13,7 @@ def index(request):
     current_user = request.user
     if current_user.id:
         check_user_id(current_user)
-        
+
         # TODO: filter only based on subscriptiuos of user
         changelogs = ChangeLog.objects.all
         context = {
@@ -27,7 +27,7 @@ def index(request):
 
 def profile(request):
     return render(request, 'profile.html', {})
-
+    
 
 def signup(request):
     if request.user.is_authenticated:

@@ -44,6 +44,7 @@ def showsubject(request, sid):
                 curriculum=None,
                 bit=None,
                 subject=subject,
+                operation=None,
             )
             log_obj.save()
 
@@ -67,6 +68,7 @@ def showsubject(request, sid):
                 curriculum=None,
                 bit=None,
                 subject=subject,
+                operation=None,
             )
             log_obj.save()
 

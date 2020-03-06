@@ -86,6 +86,7 @@ def showcurriculum(request, c_id):
                 curriculum=Curriculum(id=curriculum.id),
                 bit=None,
                 subject=None,
+                operation=None,
             )
             log_obj.save()
 
@@ -109,6 +110,7 @@ def showcurriculum(request, c_id):
                 curriculum=Curriculum(id=curriculum.id),
                 bit=None,
                 subject=None,
+                operation=None,
             )
             log_obj.save()
             
