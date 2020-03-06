@@ -61,14 +61,27 @@ def indexcurriculum(request):
 
 def showcurriculum(request, c_id):
 
-    fields = Field.objects.all()
-    topics = Topic.objects.all()
-    subjects = Subject.objects.all()
+    # fields = Field.objects.all()
+    # topics = Topic.objects.all()
+    # subjects = Subject.objects.all()
 
     curriculum = get_object_or_404(Curriculum, id=c_id)
-    if request.method == 'GET':
+    form_type = 'Subscribe'
+
+    if request.method == 'POST':
+        data = request.POST
+        print("here")
+        print(data)
         context = {'curriculum': curriculum}
         return render(request, 'curriculum/show.html', context)
+    else:
+        context = {'curriculum': curriculum}
+        return render(request, 'curriculum/show.html', context)
+
+    # if request.method == 'GET':
+    #     context = {'curriculum': curriculum}
+    #     return render(request, 'curriculum/show.html', context)
+
 
 
 def updatecurriculum(request, c_id):

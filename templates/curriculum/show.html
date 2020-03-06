@@ -2,7 +2,13 @@
 {% load static %}
 {% block content %}
 <div class="container">
-    Show The Curriculum
+    Show the Curriculum Here!
+    <div class="row">
+        <form class="form-inline col-12" method="post">
+                {% csrf_token %}
+            <button class="btn btn-outline-dark col-2" type="submit">Subscribe</button>
+        </form>
+    </div>
 </div>
 <script>
     //  subject filter scripts based on field and topic
