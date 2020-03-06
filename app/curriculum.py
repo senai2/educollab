@@ -65,7 +65,6 @@ def showcurriculum(request, c_id):
     user_subscription = Subscription.objects.filter(
         member=request.user.id, curriculum=curriculum, subject__isnull=True).exclude(curriculum__isnull=True)
 
-    print(user_subscription)
     if request.method == 'POST':
         """
         Filtering user subscription by only
@@ -79,11 +78,13 @@ def showcurriculum(request, c_id):
 
             # Updating Change Log for the change
             reason = 'Unsubscribed from Curriculum' + \
-                str(curriculum.id) + '+ more details'
+                str(curriculum.id) + ' + more details'
             log_obj = ChangeLog(
                 member=Member(id=request.user.id),
                 description=reason,
-                curriculum=Curriculum(id=curriculum.id)
+                curriculum=Curriculum(id=curriculum.id),
+                bit=None,
+                subject=None,
             )
             log_obj.save()
 
@@ -100,11 +101,13 @@ def showcurriculum(request, c_id):
 
             # Updating Change Log for the change
             reason = 'Subscribed to Curriculum' + \
-                str(curriculum.id) + '+ more details'
+                str(curriculum.id) + ' + more details'
             log_obj = ChangeLog(
                 member=Member(id=request.user.id),
                 description=reason,
-                curriculum=Curriculum(id=curriculum.id)
+                curriculum=Curriculum(id=curriculum.id),
+                bit=None,
+                subject=None,
             )
             log_obj.save()
             

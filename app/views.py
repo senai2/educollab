@@ -4,7 +4,7 @@ from .utils import check_user_id, create_member_obj
 from .forms import SignUpForm
 from datetime import datetime
 from app.models import Field, Subject, ChangeLog
-from app import curriculum
+from app import curriculum, subject
 
 # Create your views here.
 
@@ -15,13 +15,13 @@ def index(request):
         check_user_id(current_user)
 
         """
-        Filtering feeds associated with the user by selecting 
-        only the records matching user id from ChangeLog table 
+        Filtering feeds associated with the user by selecting
+        only the records matching user id from ChangeLog table
 
         """
         user_feed = ChangeLog.objects.filter(member=request.user.id)
         context = {"changelogs": user_feed}
-        
+
         return render(request, 'feeds.html', context)
     else:
         return render(request, 'index.html', {})
@@ -54,12 +54,10 @@ def explore(request):
     return render(request, 'explore.html', {"fields": fields})
 
 
-def subject(request, sid):
-    subject = Subject.objects.filter(id=sid).first()
-    context = {
-        'subject': subject
-    }
-    return render(request, 'subject.html', context)
+def subject_index(request, sid):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    return subject.showsubject(request, sid)
 
 
 def curriculum_index(request):

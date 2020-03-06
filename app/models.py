@@ -72,6 +72,7 @@ class ChangeLog(models.Model):
     description = models.CharField(max_length=1000)
     curriculum = models.ForeignKey(Curriculum, related_name='changelog', on_delete=models.CASCADE, null=True, default=None)
     bit = models.ForeignKey(Bit, related_name='changelog', on_delete=models.CASCADE, null=True, default=None)
+    subject = models.ForeignKey(Subject, related_name='changelog', on_delete=models.CASCADE, null=True, default=None)
 
     def __str__(self):
         return self.description
