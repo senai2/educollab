@@ -1,12 +1,13 @@
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.models import User
-from django.shortcuts import render, redirect, get_object_or_404
-from .utils import check_user_id
+from django.shortcuts import render, get_object_or_404
 from app.models import Member, ChangeLog, Subscription, Subject
-from educollab import settings
 
 
 def showsubject(request, sid):
+
+    # Shitty solution for now
+    if not Subject.objects.filter(id=sid):
+        return render(request, 'registration/login.html', {})
+
     subject = get_object_or_404(Subject, id=sid)
 
     user_subscription = Subscription.objects.filter(
@@ -36,8 +37,8 @@ def showsubject(request, sid):
             user_subscription.delete()
 
             # Updating Change Log for the change
-            reason = 'Unsubscribed from Subject' + \
-                str(sid) + '+ more details'
+            reason = 'Unsubscribed from ' + \
+                str(subject) + ' + more details'
             log_obj = ChangeLog(
                 member=Member(id=request.user.id),
                 description=reason,
@@ -60,8 +61,7 @@ def showsubject(request, sid):
             sub_obj.save()
 
             # Updating Change Log for the change
-            reason = 'Subscribed to Curriculum' + \
-                str(sid) + '+ more details'
+            reason = 'Subscribed to ' + str(subject) + ' + more details'
             log_obj = ChangeLog(
                 member=Member(id=request.user.id),
                 description=reason,

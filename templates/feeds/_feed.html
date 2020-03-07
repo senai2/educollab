@@ -70,6 +70,7 @@
                     {% elif changelog.curriculum.id %}
                     <a href="{% url 'curriculum_show' c_id=changelog.curriculum.id %}" class="btn btn-primary">Go</a>
                     {% else%}
+                    <!-- Curriculum doesn't exist anymore -->
                     <a href="#" class="btn btn-primary">Don't go</a>
                     {% endif %}
                 </div>

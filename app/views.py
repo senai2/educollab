@@ -2,26 +2,13 @@ from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from .utils import check_user_id, create_member_obj, add_comment
 from .forms import SignUpForm
-from datetime import datetime
 from app.models import Field, Subject, ChangeLog
-from app import curriculum, subject
-
+from app import curriculum, subject, home
 
 def index(request):
-    current_user = request.user
-    if current_user.id:
-        check_user_id(current_user)
-
-        # TODO: filter only based on subscriptiuos of user
-        changelogs = ChangeLog.objects.all
-        context = {
-            "changelogs": changelogs,
-            "current_user": current_user
-        }
-        return render(request, 'feeds/index.html', context)
-    else:
-        return render(request, 'index.html', {})
-
+    if not request.user.is_authenticated:
+        return redirect('login')
+    return home.feed(request)
 
 def profile(request):
     return render(request, 'profile.html', {})
